@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Results - SAP Certification</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="result-container">
+        <div class="top-section">
+            <img src="xtslogo1.png" width="500" height="150" alt="XTS Logo">
+            <h2>SAP Certification Results</h2>
+        </div>
+
+        <div class="result-content">
+            <h3 id="result-title">Your Results</h3>
+            <div id="result-details"></div>
+            <div class="result-actions">
+                <button class="btn" onclick="window.location.href='index.html'">Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load results from session storage
+        document.addEventListener('DOMContentLoaded', () => {
+            const resultDetails = document.getElementById('result-details');
+            const score = sessionStorage.getItem('quizScore');
+            const totalQuestions = sessionStorage.getItem('quizTotalQuestions');
+            const unanswered = sessionStorage.getItem('quizUnanswered');
+
+            if (score !== null) {
+                resultDetails.innerHTML = `
+                    <p><strong>Your Final Score:</strong> ${score}/${totalQuestions}</p>
+                    <p><strong>Unanswered Questions:</strong> ${unanswered} (-1 each)</p>
+                `;
+            } else {
+                resultDetails.innerHTML = `<p>No results found. Please complete the quiz first.</p>`;
+            }
+        });
+    </script>
+</body>
+
+</html>
